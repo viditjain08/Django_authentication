@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login as authlogin, logout as authlogout
 from django.http import HttpResponse, Http404, HttpResponseRedirect
-from main.forms import loginform
+from main.forms import loginform, signupform
 from django.contrib.auth.decorators import login_required
+from main.models import Erpuser
 # Create your views here.
 def login(request):
     if request.user.is_authenticated:
@@ -33,3 +34,27 @@ def home(request):
 def logout(request):
     authlogout(request)
     return HttpResponseRedirect('/login/')
+
+def signup(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('/home/')
+    else:
+        if request.method == 'POST':
+            form = signupform(request.POST)
+            if form.is_valid():
+                cd = form.cleaned_data
+                username2 = cd['username']
+                firstname2 = cd['firstname']
+                lastname2 = cd['lastname']
+                email2 = cd['email']
+                bitsid2 = cd['bitsid']
+                password2 = cd['password2']
+                us = Erpuser(first_name = firstname2, last_name = lastname2, username = username2, email=email2, bitsid = bitsid2)
+                us.set_password(password2)
+                us.save()
+                return HttpResponseRedirect('/login/')
+            else:
+                return render(request, 'signup.html', {'form': form})
+        else:
+            form = signupform()
+            return render(request, 'signup.html', {'form': form})

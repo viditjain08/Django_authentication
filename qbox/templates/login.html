@@ -8,17 +8,17 @@
 
     {% if form.errors %}
         <p style="color: red;">
-            Please correct the error{{ form.errors|pluralize }} below.
+            Please correct the error(s) below.
         </p>
     {% endif %}
 
     <form action="" method="post">
-        <div class="field">
+        <div>
             {{ form.username.errors }}
             <label for="id_username">Username:</label>
             {{ form.username }}
         </div>
-        <div class="field">
+        <div>
             {{ form.password.errors }}
             <label for="id_password">Password:</label>
             {{ form.password }}
@@ -27,6 +27,7 @@
         {% csrf_token %}
         <input type="submit" value="Submit">
     </form>
+<a href="/signup/">Signup</a>
 </body>
 </html>
 

@@ -1,0 +1,69 @@
+<html>
+<head>
+    <title>Login</title>
+</head>
+
+<body>
+    <h1>Login</h1>
+
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error(s) below.
+        </p>
+    {% endif %}
+    <form action="" method="post">
+        <div style="color: red;">
+            {{ form.firstname.errors }}
+        </div>
+            <label for="id_firstname">First Name:</label>
+            {{ form.firstname }}
+
+
+        <div style="color: red;">
+            {{ form.lastname.errors }}
+        </div>
+            <label for="id_lastname">Last Name:</label>
+            {{ form.lastname }}
+
+
+        <div style="color: red;">
+            {{ form.username.errors }}
+        </div>
+            <label for="id_username">Choose your username:</label>
+            {{ form.username }}
+
+
+        <div style="color: red;">
+            {{ form.password1.errors }}
+        </div>
+            <label for="id_password1">Create a Password:</label>
+            {{ form.password1 }}
+
+
+        <div style="color: red;">
+            {{ form.password2.errors }}
+        </div>
+            <label for="id_password2">Confirm your Password:</label>
+            {{ form.password2 }}
+
+        <div style="color: red;">
+            {{ form.bitsid.errors }}
+        </div>
+            <label for="id_bitsid">Bits ID:</label>
+            {{ form.bitsid }}
+
+
+        <div style="color: red;">
+            {{ form.email.errors }}
+        </div>
+            <label for="id_lastname">Email:</label>
+            {{ form.email }}
+
+
+        {% csrf_token %}
+        <input type="submit" value="Submit">
+    </form>
+<a href="/login/">Login</a>
+</body>
+</html>
+
